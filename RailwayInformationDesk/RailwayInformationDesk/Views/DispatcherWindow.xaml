@@ -1,0 +1,93 @@
+﻿<!-- Views/DispatcherWindow.xaml -->
+<Window x:Class="RailwayInformationDesk.Views.DispatcherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Дежурный по станции" Height="650" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Поезда на ближайшие 12 часов"
+                   Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                   Margin="0,0,0,10"/>
+
+        <DataGrid x:Name="IncomingTrainsGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Маршрут" Binding="{Binding Stop.Template.Route.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Stop.Template.TrainType.Name}" Width="1*"/>
+                <DataGridTextColumn Header="План. прибытие" Binding="{Binding PlannedArrivalTime, StringFormat='HH:mm'}" Width="1.3*"/>
+                <DataGridTextColumn Header="План. отправление" Binding="{Binding PlannedDepartureTime, StringFormat='HH:mm'}" Width="1.3*"/>
+                <DataGridTemplateColumn Header="Платф. факт" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding ActualPlatform, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource MaterialDesignTextBox}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!-- Факт. прибытие -->
+                <DataGridTemplateColumn Header="Факт. прибытие" Width="1.3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ActualSchedule.ActualArrivalTime, StringFormat='HH:mm'}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding ActualSchedule.ActualArrivalTime, 
+                                    UpdateSourceTrigger=PropertyChanged}"
+                    TextChanged="TimeTextBox_TextChanged"
+                     materialDesign:HintAssist.Hint="чч:мм"
+                     MaxLength="5"
+                     Style="{StaticResource MaterialDesignTextBox}"
+                     Background="Transparent"
+                     BorderThickness="0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Факт. отправление -->
+                <DataGridTemplateColumn Header="Факт. отправление" Width="1.3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ActualSchedule.ActualDepartureTime, StringFormat='HH:mm'}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding ActualSchedule.ActualDepartureTime, 
+                                    UpdateSourceTrigger=PropertyChanged}"
+                     TextChanged="TimeTextBox_TextChanged"
+                     materialDesign:HintAssist.Hint="чч:мм"
+                     MaxLength="5"
+                     Style="{StaticResource MaterialDesignTextBox}"
+                     Background="Transparent"
+                     BorderThickness="0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Сохранить фактические данные"
+        Click="SaveButton_Click"
+        Style="{StaticResource MaterialDesignRaisedButton}"
+        MinWidth="75"/>
+            <Button Content="Выход"
+                    Margin="10 0 0 0 "
+        Click="ExitButton_Click"
+        Style="{StaticResource MaterialDesignRaisedButton}"
+        MinWidth="50"/>
+        </StackPanel>
+    </Grid>
+</Window>

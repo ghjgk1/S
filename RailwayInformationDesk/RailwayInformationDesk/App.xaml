@@ -1,0 +1,32 @@
+﻿<Application x:Class="RailwayInformationDesk.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="Views/LoginWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Blue" SecondaryColor="Lime"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:IdToNameConverter x:Key="IdToNameConverter" xmlns:local="clr-namespace:RailwayInformationDesk.Converters"/>
+            <local:RoleToStationEnabledConverter x:Key="RoleToStationEnabledConverter" xmlns:local="clr-namespace:RailwayInformationDesk.Converters"/>
+            <local:TimeInputConverter x:Key="TimeInputConverter" xmlns:local="clr-namespace:RailwayInformationDesk.Converters"/>
+            <local:DateTimeToTimeStringConverter x:Key="DateTimeToTimeStringConverter" xmlns:local="clr-namespace:RailwayInformationDesk.Converters"/>
+
+            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="AutomationProperties.Name" Value="" />
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="AutomationProperties.Name" Value="" />
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="AutomationProperties.Name" Value="" />
+            </Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignDatePicker}">
+                <Setter Property="AutomationProperties.Name" Value="" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

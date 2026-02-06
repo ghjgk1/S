@@ -1,0 +1,43 @@
+﻿<!-- Views/UserSearchWindow.xaml -->
+<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="RailwayInformationDesk.Views.UserSearchWindow"
+        Title="Поиск поездов" Height="650" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Выбор станций (откуда / куда) -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
+            <ComboBox x:Name="FromStation" materialDesign:HintAssist.Hint="Откуда" Width="220" Margin="0,0,15,0"/>
+            <ComboBox x:Name="ToStation" materialDesign:HintAssist.Hint="Куда" Width="220"/>
+        </StackPanel>
+
+        <!-- Кнопка поиска и чекбокс -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,15">
+            <Button Content="Найти поезда" Click="SearchButton_Click" Style="{StaticResource MaterialDesignRaisedButton}" Margin="0,0,15,0"/>
+            <CheckBox x:Name="ShowPastTrips" Content="Показать ушедшие поезда" Checked="TogglePastTrips" Unchecked="TogglePastTrips"/>
+            <Button Content="Выход" Click="ExitButton_Click" Margin="400 0 0  0 "
+                    Style="{StaticResource MaterialDesignRaisedButton}"/>
+        </StackPanel>
+
+        <!-- Список рейсов -->
+        <DataGrid x:Name="TripsGrid" Grid.Row="3" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Маршрут" Binding="{Binding Template.Route.Name}" Width="2*"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Template.TrainType.Name}" Width="*"/>
+                <DataGridTextColumn Header="Отправление" Binding="{Binding DepartureDisplay}" Width="2*"/>
+                <DataGridTextColumn Header="Прибытие" Binding="{Binding ArrivalDisplay}" Width="2*"/>
+                <DataGridTextColumn Header="Платформа" Binding="{Binding Platform}" Width="*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

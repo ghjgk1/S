@@ -1,0 +1,20 @@
+﻿RailwayInformationDesk
+
+
+winexe
+C#
+.cs
+C:\Users\wutte\Documents\БазыДанных\Новая папка\RailwayInformationDesk\RailwayInformationDesk\obj\Debug\net8.0-windows\
+RailwayInformationDesk
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+C:\Users\wutte\Documents\БазыДанных\Новая папка\RailwayInformationDesk\RailwayInformationDesk\App.xaml
+52010350369
+221658191647
+21423205134
+231520419922
+Views\AdminWindow.xaml;Views\DispatcherWindow.xaml;Views\LoginWindow.xaml;Views\TemplateStopsWindow.xaml;Views\UserSearchWindow.xaml;
+
+False
+
